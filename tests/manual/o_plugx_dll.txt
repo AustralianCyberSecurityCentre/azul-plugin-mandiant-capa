@@ -1,0 +1,50 @@
+md5                     03b78817cbff3cbd8688011c09f6dd1e
+sha1                    37b26787786368cd51a356032a2a7f6d86810a8c
+sha256                  3c5e2a4afe58634f45c48f4e800dc56bae3907dde308ff97740e9cd5684d1c53
+path                    tests/data/o_plugx_dll
+timestamp               2023-03-31 05:08:10.214852
+capa version            5.0.0
+os                      windows
+format                  pe
+arch                    i386
+extractor               VivisectFeatureExtractor
+base address            0x10000000
+rules                   /home/azul-plugin-mandiant-capa/capa-rules
+function count          105
+library function count  219
+total feature count     4370
+
+contain obfuscated stackstrings
+namespace  anti-analysis/obfuscation/string/stackstring
+scope      basic block
+matches    0x10001000
+
+get file size
+namespace  host-interaction/file-system/meta
+scope      function
+matches    0x10001000
+
+print debug messages
+namespace  host-interaction/log/debug/write-event
+scope      function
+matches    0x10006720
+
+get thread local storage value
+namespace  host-interaction/process
+scope      function
+matches    0x10003B0E
+
+link function at runtime on Windows (3 matches)
+namespace  linking/runtime-linking
+scope      function
+matches    0x10001000
+           0x10002160
+           0x10006720
+
+link many functions at runtime
+namespace  linking/runtime-linking
+scope      function
+matches    0x10006720
+
+
+

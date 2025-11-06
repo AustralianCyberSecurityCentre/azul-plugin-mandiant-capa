@@ -1,0 +1,23 @@
+md5                     5b271a1403abf6fdb0ee88cfd73161da
+sha1                    2574f91366c0155aac3d3ae5dcb0d9a8d67bb33a
+sha256                  a1cb4905d8db07e87ff5ab1bccc26b0de422e3a214f498383d9670223c25c9fc
+path                    tests/data/o_shellcode_x64
+timestamp               2023-03-31 05:17:02.470146
+capa version            5.0.0
+os                      unknown
+format                  unknown
+arch                    unknown
+extractor               VivisectFeatureExtractor
+base address            0x690000
+rules                   /home/azul-plugin-mandiant-capa/capa-rules
+function count          2
+library function count  0
+total feature count     210
+
+access PEB ldr_data
+namespace  linking/runtime-linking
+scope      basic block
+matches    0x690000
+
+
+

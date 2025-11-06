@@ -1,0 +1,120 @@
+md5                     3db3e55b16a7b1b1afb970d5e77c5d98
+sha1                    bb44696c170e09b7708936ca3597002e3b8d93ff
+sha256                  294b8db1f2702b60fb2e42fdc50c2cee6a5046112da9a5703a548a4fa50477bc
+path                    ../data/o_vermillion_strike
+timestamp               2023-05-09 00:59:29.228546
+capa version            5.0.0
+os                      linux
+format                  elf
+arch                    amd64
+extractor               VivisectFeatureExtractor
+base address            0x400000
+rules                   /home/azul-plugin-mandiant-capa/capa-rules
+function count          267
+library function count  0
+total feature count     9528
+
+get current user on Linux
+namespace  collection
+scope      function
+matches    0x404090
+
+receive data
+namespace    communication
+description  all known techniques for receiving data from a potential C2 server
+scope        function
+matches      0x40D640
+
+resolve DNS (2 matches)
+namespace  communication/dns
+scope      function
+matches    0x403E90
+           0x40E0D0
+
+create raw socket
+namespace  communication/socket
+scope      basic block
+matches    0x40D81C
+
+receive data on socket
+namespace  communication/socket/receive
+scope      function
+matches    0x40D640
+
+create UDP socket
+namespace  communication/socket/udp/send
+scope      basic block
+matches    0x40C740
+
+encode data using XOR (2 matches)
+namespace  data-manipulation/encoding/xor
+scope      basic block
+matches    0x4068B8
+           0x406E50
+
+encrypt data using RC4 PRGA
+namespace  data-manipulation/encryption/rc4
+scope      function
+matches    0x405560
+
+read file on Linux
+namespace  host-interaction/file-system/read
+scope      function
+matches    0x4064C0
+
+create semaphore on Linux
+namespace  host-interaction/mutex
+scope      function
+matches    0x408DE0
+
+lock semaphore on Linux (8 matches)
+namespace  host-interaction/mutex
+scope      function
+matches    0x409260
+           0x409460
+           0x409560
+           0x4096B0
+           0x409800
+           0x409930
+           0x409B80
+           0x409C78
+
+unlock semaphore on Linux (12 matches)
+namespace  host-interaction/mutex
+scope      function
+matches    0x409260
+           0x409460
+           0x409560
+           0x4096B0
+           0x409800
+           0x409930
+           0x409B80
+           0x409C78
+           0x40B430
+           0x40B518
+           0x40B578
+           0x40B598
+
+get networking interfaces
+namespace  host-interaction/network/interface
+scope      function
+matches    0x403E90
+
+get hostname
+namespace  host-interaction/os/hostname
+scope      function
+matches    0x404460
+
+get kernel version
+namespace  host-interaction/os/version
+scope      function
+matches    0x4042E0
+
+create thread (2 matches)
+namespace  host-interaction/thread/create
+scope      basic block
+matches    0x4035E0
+           0x409B49
+
+
+

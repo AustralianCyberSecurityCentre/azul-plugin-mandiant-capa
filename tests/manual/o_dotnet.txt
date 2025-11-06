@@ -1,0 +1,27 @@
+md5                     5415158da20a8183994d55a237f0b2a1
+sha1                    8b4b4d914318f98664e7841efba9e850424c1272
+sha256                  bd5bf1c7c8f6dea328ce04aa5e7690a5a0e9ef3d4c9b011db6e923d3c40ae566
+path                    ../data/o_dotnet_exe
+timestamp               2023-05-09 00:51:38.069567
+capa version            5.0.0
+os                      windows
+format                  dotnet
+arch                    i386
+extractor               DnfileFeatureExtractor
+base address            global
+rules                   /home/azul-plugin-mandiant-capa/capa-rules
+function count          2
+library function count  0
+total feature count     92
+
+manipulate console buffer
+namespace  host-interaction/console
+scope      function
+matches    token(0x6000001)
+
+compiled to the .NET platform
+namespace  runtime/dotnet
+scope      file
+
+
+

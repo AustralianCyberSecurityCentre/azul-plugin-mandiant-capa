@@ -1,0 +1,43 @@
+md5                     beb8642967d229fd54da294e7be64f7e
+sha1                    f25c637d085bd9d20d79a81d4182981b2197313a
+sha256                  006f0a1004e960b6a7e7669bf88c240f203a6e5ebb38d92727167741537cae65
+path                    tests/data/o_shellcode_x86
+timestamp               2023-03-31 05:14:24.471661
+capa version            5.0.0
+os                      unknown
+format                  unknown
+arch                    unknown
+extractor               VivisectFeatureExtractor
+base address            0x690000
+rules                   /home/azul-plugin-mandiant-capa/capa-rules
+function count          4
+library function count  0
+total feature count     2262
+
+contain obfuscated stackstrings (6 matches)
+namespace  anti-analysis/obfuscation/string/stackstring
+scope      basic block
+matches    0x6B3D4F
+           0x6B3E81
+           0x6B3FAD
+           0x6B40CB
+           0x6B415B
+           0x6B42A0
+
+get number of processors
+namespace  host-interaction/hardware/cpu
+scope      function
+matches    0x6B3AE0
+
+access PEB ldr_data
+namespace  linking/runtime-linking
+scope      basic block
+matches    0x6B3AE0
+
+resolve function by hash
+namespace  linking/runtime-linking
+scope      function
+matches    0x6B3AE0
+
+
+
