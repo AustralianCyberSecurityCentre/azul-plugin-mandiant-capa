@@ -46,7 +46,7 @@ class TestMandiantCapa(test_template.TestPlugin):
                         sha256="3e753d9ad6c402a4c1827b1a35b58172f2655b242ee0a3b3d354a7ff6b5dd470",
                         data=[
                             EventData(
-                                hash="9ec54aa91d848828fc50abf0dc3c4ad354f557a56a6234a1ad2c69a112a26725", label="text"
+                                hash="68340b09c656bb7dd7277329eab6a47fb3397627d1cecc6974e508a3c687e642", label="text"
                             )
                         ],
                         features={
@@ -66,11 +66,12 @@ class TestMandiantCapa(test_template.TestPlugin):
                         },
                     )
                 ],
+                # Note on capa version updates the `capa version field will update and the sha256 will change as a result`
                 data={
-                    "9ec54aa91d848828fc50abf0dc3c4ad354f557a56a6234a1ad2c69a112a26725": b"""md5                     9fc5fa1cd40915612494aec175b74a45
+                    "68340b09c656bb7dd7277329eab6a47fb3397627d1cecc6974e508a3c687e642": b"""md5                     9fc5fa1cd40915612494aec175b74a45
 sha1                    27abed4b0bf55adef77aee30a6214ecdf100cae3
 sha256                  3e753d9ad6c402a4c1827b1a35b58172f2655b242ee0a3b3d354a7ff6b5dd470
-capa version            9.2.1
+capa version            9.3.0
 os                      windows
 format                  pe
 arch                    i386
@@ -138,7 +139,7 @@ or:
                         sha256="3c5e2a4afe58634f45c48f4e800dc56bae3907dde308ff97740e9cd5684d1c53",
                         data=[
                             EventData(
-                                hash="d51b50959b9832d0bccc58491baf557e093639daf40414379d3f80bcf25dd671", label="text"
+                                hash="3507a9f45c6dc6b18cd0b28790553a54389540ba5e0b6a6560c5d1afb82744a7", label="text"
                             )
                         ],
                         features={
@@ -175,7 +176,7 @@ or:
                         },
                     )
                 ],
-                data={"d51b50959b9832d0bccc58491baf557e093639daf40414379d3f80bcf25dd671": b""},
+                data={"3507a9f45c6dc6b18cd0b28790553a54389540ba5e0b6a6560c5d1afb82744a7": b""},
             ),
         )
 
@@ -201,7 +202,7 @@ or:
                         sha256="006f0a1004e960b6a7e7669bf88c240f203a6e5ebb38d92727167741537cae65",
                         data=[
                             EventData(
-                                hash="4f35975b61c50a2e300d815c308b319fcca8dd1e882ee6907f2c1c17f97c507f", label="text"
+                                hash="2b973afe86e8812d178eab8b1590d56ed599ec3108ae7fe6d1d510c235a6a44b", label="text"
                             )
                         ],
                         features={
@@ -235,7 +236,7 @@ or:
                         },
                     )
                 ],
-                data={"4f35975b61c50a2e300d815c308b319fcca8dd1e882ee6907f2c1c17f97c507f": b""},
+                data={"2b973afe86e8812d178eab8b1590d56ed599ec3108ae7fe6d1d510c235a6a44b": b""},
             ),
         )
 
@@ -262,7 +263,7 @@ or:
                         sha256="a1cb4905d8db07e87ff5ab1bccc26b0de422e3a214f498383d9670223c25c9fc",
                         data=[
                             EventData(
-                                hash="51f48d66bd068a5cb7662836e259281163515ae5e4e90d42a98f0355d86c111d", label="text"
+                                hash="236c914336af213960a6a8c6993912531d1c1973856ff533a37f0ef3250dfda4", label="text"
                             )
                         ],
                         features={
@@ -271,7 +272,7 @@ or:
                         },
                     )
                 ],
-                data={"51f48d66bd068a5cb7662836e259281163515ae5e4e90d42a98f0355d86c111d": b""},
+                data={"236c914336af213960a6a8c6993912531d1c1973856ff533a37f0ef3250dfda4": b""},
             ),
         )
 
@@ -297,7 +298,7 @@ or:
                         sha256="bd5bf1c7c8f6dea328ce04aa5e7690a5a0e9ef3d4c9b011db6e923d3c40ae566",
                         data=[
                             EventData(
-                                hash="a2d9974154fcb36da0814fbb6e250d61078acc1ac802304eacce22a0b2b76472", label="text"
+                                hash="6b57399899da960505b3730cef9e32d160b12582d117966d81cc16beba95d7b8", label="text"
                             )
                         ],
                         features={
@@ -309,7 +310,7 @@ or:
                         },
                     )
                 ],
-                data={"a2d9974154fcb36da0814fbb6e250d61078acc1ac802304eacce22a0b2b76472": b""},
+                data={"6b57399899da960505b3730cef9e32d160b12582d117966d81cc16beba95d7b8": b""},
             ),
         )
 
@@ -336,7 +337,7 @@ or:
                         sha256="294b8db1f2702b60fb2e42fdc50c2cee6a5046112da9a5703a548a4fa50477bc",
                         data=[
                             EventData(
-                                hash="97ee4deb7e0bc45719cf8850bcb9a78600012b3072cd41c5c951cf6648d89293", label="text"
+                                hash="f415995ebc6dec6db7f34956d0508e065d2a4dbb5d95d982658f1af5a560387b", label="text"
                             )
                         ],
                         features={
@@ -405,7 +406,7 @@ or:
                         },
                     )
                 ],
-                data={"97ee4deb7e0bc45719cf8850bcb9a78600012b3072cd41c5c951cf6648d89293": b""},
+                data={"f415995ebc6dec6db7f34956d0508e065d2a4dbb5d95d982658f1af5a560387b": b""},
             ),
         )
 
@@ -420,13 +421,11 @@ or:
             result,
             JobResult(
                 state=State(
-                    State.Label.COMPLETED_WITH_ERRORS,
-                    message="Unicode could not be decoded within PE metadata.",
+                    State.Label.COMPLETED_WITH_ERRORS, message="Unicode could not be decoded within PE metadata."
                 ),
                 events=[
                     Event(
-                        entity_type="binary",
-                        entity_id="bd8b088f2460047d293fcbab99fdbea51cef334c18bdd40e403376f1dd3a5e91",
+                        sha256="bd8b088f2460047d293fcbab99fdbea51cef334c18bdd40e403376f1dd3a5e91",
                         features={"malformed": [FV("Unicode could not be decoded within PE metadata.")]},
                     )
                 ],
