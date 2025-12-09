@@ -28,7 +28,7 @@ logging.basicConfig(level=logging.CRITICAL)
 class AzulPluginMandiantCapa(BinaryPlugin):
     """An Azul plugin that uses FireEye's CAPA tool to detect capabilities in binaries.."""
 
-    VERSION = "2025.10.13"
+    VERSION = "2025.12.09"
     SETTINGS = add_settings(
         filter_data_types={
             "content": [
