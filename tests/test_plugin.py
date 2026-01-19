@@ -46,7 +46,7 @@ class TestMandiantCapa(test_template.TestPlugin):
                         sha256="3e753d9ad6c402a4c1827b1a35b58172f2655b242ee0a3b3d354a7ff6b5dd470",
                         data=[
                             EventData(
-                                hash="a407ad8f79ebff9d5c2f20cf95f1ddb8042f3757fbf329f4c32bf3e1120e4fe3", label="text"
+                                hash="fa4702193d2fafe081d4d3aa008693f4fdfa7544d297fe820ccb27af0067386f", label="text"
                             )
                         ],
                         features={
@@ -67,7 +67,7 @@ class TestMandiantCapa(test_template.TestPlugin):
                     )
                 ],
                 data={
-                    "a407ad8f79ebff9d5c2f20cf95f1ddb8042f3757fbf329f4c32bf3e1120e4fe3": b"""md5                     9fc5fa1cd40915612494aec175b74a45
+                    "fa4702193d2fafe081d4d3aa008693f4fdfa7544d297fe820ccb27af0067386f": b"""md5                     9fc5fa1cd40915612494aec175b74a45
 sha1                    27abed4b0bf55adef77aee30a6214ecdf100cae3
 sha256                  3e753d9ad6c402a4c1827b1a35b58172f2655b242ee0a3b3d354a7ff6b5dd470
 capa version            9.3.1
@@ -79,7 +79,7 @@ extractor               VivisectFeatureExtractor
 base address            0x400000
 function count          14
 library function count  0
-total feature count     6799
+total feature count     6798
 packed with VMProtect
 namespace   anti-analysis/packer/vmprotect
 author      william.ballenthin@mandiant.com
@@ -419,14 +419,74 @@ or:
         self.assertJobResult(
             result,
             JobResult(
-                state=State(
-                    State.Label.COMPLETED_WITH_ERRORS, message="Unicode could not be decoded within PE metadata."
-                ),
+                state=State(State.Label.COMPLETED),
                 events=[
                     Event(
                         sha256="bd8b088f2460047d293fcbab99fdbea51cef334c18bdd40e403376f1dd3a5e91",
-                        features={"malformed": [FV("Unicode could not be decoded within PE metadata.")]},
+                        data=[
+                            EventData(
+                                hash="327cff7bd6a69b2b4b8f80b231c677c28740ea1a8b88ffa947bce07f7478ef05", label="text"
+                            )
+                        ],
+                        features={
+                            "attack": [
+                                FV("T1027", label="Defense Evasion::Obfuscated Files or Information"),
+                                FV(
+                                    "T1027.005",
+                                    label="Defense Evasion::Obfuscated Files or Information::Indicator Removal from Tools",
+                                ),
+                                FV("T1082", label="Discovery::System Information Discovery"),
+                                FV("T1129", label="Execution::Shared Modules"),
+                            ],
+                            "capability": [
+                                FV("access PEB ldr_data", label="linking/runtime-linking"),
+                                FV("check HTTP status code", label="communication/http/client"),
+                                FV(
+                                    "contain obfuscated stackstrings",
+                                    label="anti-analysis/obfuscation/string/stackstring",
+                                ),
+                                FV("encode data using Base64", label="data-manipulation/encoding/base64"),
+                                FV("encode data using XOR", label="data-manipulation/encoding/xor"),
+                                FV("encrypt data using AES", label="data-manipulation/encryption/aes"),
+                                FV("get number of processors", label="host-interaction/hardware/cpu"),
+                                FV("hash data using SHA256", label="data-manipulation/hashing/sha256"),
+                                FV("parse PE header", label="load-code/pe"),
+                                FV("read file on Windows", label="host-interaction/file-system/read"),
+                                FV("reference AES constants", label="data-manipulation/encryption/aes"),
+                                FV("reference Base64 string", label="data-manipulation/encoding/base64"),
+                                FV("resolve function by hash", label="linking/runtime-linking"),
+                                FV("resolve function by parsing PE exports", label="load-code/pe"),
+                                FV("write file on Windows", label="host-interaction/file-system/write"),
+                            ],
+                            "malware_behavior_catalog": [
+                                FV(
+                                    "B0032.017",
+                                    label="Anti-Static Analysis::Executable Code Obfuscation::Stack Strings",
+                                ),
+                                FV(
+                                    "B0032.020",
+                                    label="Anti-Static Analysis::Executable Code Obfuscation::Argument Obfuscation",
+                                ),
+                                FV("C0002.014", label="Communication::HTTP Communication::Read Header"),
+                                FV("C0019", label="Data::Check String"),
+                                FV("C0026.001", label="Data::Encode Data::Base64"),
+                                FV("C0026.002", label="Data::Encode Data::XOR"),
+                                FV("C0027.001", label="Cryptography::Encrypt Data::AES"),
+                                FV("C0029.003", label="Cryptography::Cryptographic Hash::SHA256"),
+                                FV("C0051", label="File System::Read File"),
+                                FV("C0052", label="File System::Writes File"),
+                                FV(
+                                    "E1027.m02",
+                                    label="Defense Evasion::Obfuscated Files or Information::Encoding-Standard Algorithm",
+                                ),
+                                FV(
+                                    "E1027.m05",
+                                    label="Defense Evasion::Obfuscated Files or Information::Encryption-Standard Algorithm",
+                                ),
+                            ],
+                        },
                     )
                 ],
+                data={"327cff7bd6a69b2b4b8f80b231c677c28740ea1a8b88ffa947bce07f7478ef05": b""},
             ),
         )
