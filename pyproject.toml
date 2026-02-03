@@ -50,6 +50,9 @@ version_scheme = "only-version"
 [tool.hatch.version.fallback]
 version = "0.0.0"
 
+[tool.hatch.build.targets.wheel]
+packages = ["azul_plugin_mandiant_capa", "capa-rules", "capa-rules-cache", "capa-sigs"]
+
 [dependency-groups]
 dev = [
     "azul-runner[test-utils]>=9.0.38",
