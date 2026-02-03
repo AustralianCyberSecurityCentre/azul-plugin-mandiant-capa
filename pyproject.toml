@@ -53,7 +53,6 @@ version = "0.0.0"
 [dependency-groups]
 dev = [
     "azul-runner[test-utils]>=9.0.38",
-    "bandit>=1.9.3",
     "black>=26.1.0",
     "cart>=1.2.3",
     "flake8>=7.3.0",
@@ -116,6 +115,8 @@ select = [
   "B",
   # flake8 doc strings
   "D",
+  # bandit
+  "S",
 ]
 ignore = ["B008","C901","D104","D107","E203"]
 exclude = [
