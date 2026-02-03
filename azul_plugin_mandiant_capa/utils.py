@@ -133,7 +133,7 @@ def do_capa_processing(
 
     except PEFormatError as e:
         # PE is corrupt
-        raise CorruptFileError(str(e))
+        raise CorruptFileError(str(e)) from e
     except UnsupportedFormatError:
         # CAPA doesn't like it, lets check if it looks like shellcode
         with open(file_path, "rb") as f:
@@ -154,20 +154,20 @@ def do_capa_processing(
 
     except (IOError, capa.rules.InvalidRule, capa.rules.InvalidRuleSet) as e:
         # rules are bad, raise an exception so the plugin knows to die
-        raise RuleError(str(e))
+        raise RuleError(str(e)) from e
 
     # get file extractors and check for any limitations that prevent analysis
     try:
         file_extractors = capa.loader.get_file_extractors(file_path, file_type)
     except (PEFormatError, ELFError, OverflowError) as e:
         # input file is corrupt, bail on it
-        raise CorruptFileError(str(e))
+        raise CorruptFileError(str(e)) from e
 
     for file_extractor in file_extractors:
         try:
             pure_file_capabilities = capa.main.find_file_capabilities(rules, file_extractor, {})
         except (PEFormatError, ELFError, OverflowError) as e:
-            raise CorruptFileError(str(e))
+            raise CorruptFileError(str(e)) from e
 
         # check for file limitations
         if capa.main.has_static_limitation(rules, pure_file_capabilities):
@@ -194,7 +194,7 @@ def do_capa_processing(
             sig_paths = []
     except IOError as e:
         # sigs are missing and we need them
-        raise SignatureError(str(e))
+        raise SignatureError(str(e)) from e
 
     # I don't think we can benefit from this
     should_save_workspace = False
