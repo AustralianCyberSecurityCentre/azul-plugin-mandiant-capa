@@ -56,12 +56,7 @@ packages = ["azul_plugin_mandiant_capa", "capa-rules", "capa-rules-cache", "capa
 [dependency-groups]
 dev = [
     "azul-runner[test-utils]>=9.0.38",
-    "black>=26.1.0",
     "cart>=1.2.3",
-    "flake8>=7.3.0",
-    "flake8-bugbear>=25.11.29",
-    "flake8-docstrings>=1.7.0",
-    "pre-commit>=4.5.1",
     "pytest>=9.0.2",
     "pytest-cov>=7.0.0",
     "pytest-resource-usage>=1.0.0",
