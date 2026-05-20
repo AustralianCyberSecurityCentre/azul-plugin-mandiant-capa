@@ -11,7 +11,7 @@ rule:
     att&ck:
       - Collection::Input Capture::Keylogging [T1056.001]
     examples:
-      - 52d8e95c9883cd16d7b44e3a7adc22d6.exe_
+      - 52d8e95c9883cd16d7b44e3a7adc22d6.exe_:0x140001252
   features:
     - or:
       - api: user32.RegisterRawInputDevices

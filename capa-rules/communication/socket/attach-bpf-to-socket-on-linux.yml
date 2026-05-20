@@ -14,7 +14,7 @@ rule:
     references:
       - https://www.kernel.org/doc/Documentation/networking/filter.txt
     examples:
-      - 34dbc85ed0386e024c724c7969e8d0ff0ff0b1882508ea259c458d59657a1971
+      - 34dbc85ed0386e024c724c7969e8d0ff0ff0b1882508ea259c458d59657a1971:0x402CCE
   features:
     - and:
       - os: linux
