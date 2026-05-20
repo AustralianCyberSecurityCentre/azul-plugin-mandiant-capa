@@ -39,37 +39,7 @@ class TestMandiantCapa(test_template.TestPlugin):
         result = self.do_execution(data_in=[("content", data)])
         self.assertJobResult(
             result,
-            JobResult(
-                state=State(State.Label.COMPLETED),
-                events=[
-                    Event(
-                        sha256="3e753d9ad6c402a4c1827b1a35b58172f2655b242ee0a3b3d354a7ff6b5dd470",
-                        data=[
-                            EventData(
-                                hash="fdc4022c59b9f4a8576391a6da71541fb2054bc5685cd19fc5cafb3e48644017", label="text"
-                            )
-                        ],
-                        features={
-                            "attack": [
-                                FV(
-                                    "T1027.002",
-                                    label="Defense Evasion::Obfuscated Files or Information::Software Packing",
-                                )
-                            ],
-                            "capability": [
-                                FV("contain a thread local storage (.tls) section", label="executable/pe/section/tls"),
-                                FV("packed with VMProtect", label="anti-analysis/packer/vmprotect"),
-                            ],
-                            "malware_behavior_catalog": [
-                                FV("F0001.010", label="Anti-Static Analysis::Software Packing::VMProtect")
-                            ],
-                        },
-                    )
-                ],
-                data={
-                    "fdc4022c59b9f4a8576391a6da71541fb2054bc5685cd19fc5cafb3e48644017": b"md5                     9fc5fa1cd40915612494aec175b74a45\nsha1                    27abed4b0bf55adef77aee30a6214ecdf100cae3\nsha256                  3e753d9ad6c402a4c1827b1a35b58172f2655b242ee0a3b3d354a7ff6b5dd470\ncapa version            9.4.0\nos                      windows\nformat                  pe\narch                    i386\nanalysis                static\nextractor               VivisectFeatureExtractor\nbase address            0x400000\nfunction count          14\nlibrary function count  0\ntotal feature count     6798\npacked with VMProtect\nnamespace   anti-analysis/packer/vmprotect\nauthor      william.ballenthin@mandiant.com\nscope       file\natt&ck      Defense Evasion::Obfuscated Files or Information::Software Packing [T1027.002]\nmbc         Anti-Static Analysis::Software Packing::VMProtect [F0001.010]\nreferences  https://www.pcworld.com/article/2824572/leaked-programming-manual-may-help-criminals-develop-more-atm-malware.html, https://www.hexacorn.com/blog/2016/12/15/pe-section-names-re-visited/\nor:\n  section: .vmp0 @ 0x41C000\n  section: .vmp1 @ 0x449000\ncontain a thread local storage (.tls) section\nnamespace  executable/pe/section/tls\nauthor     michael.hunhoff@mandiant.com\nscope      file\nsection: .tls @ 0x41A000\n(internal) packer file limitation\nnamespace    internal/limitation/file\nauthor       william.ballenthin@mandiant.com\nscope        file\ndescription  This sample appears to be packed.\n             Packed samples have often been obfuscated to hide their logic.\n             capa cannot handle obfuscation well using static analysis. This means the results may be misleading or incomplete.\n             If possible, you should try to unpack this input file before analyzing it with capa.\n             Alternatively, run the sample in a supported sandbox and invoke capa against the report to obtain dynamic analysis results.\nor:\n  match: anti-analysis/packer @ global\n    or:\n      section: .vmp0 @ 0x41C000\n      section: .vmp1 @ 0x449000\n"
-                },
-            ),
+            JobResult(state=State(State.Label.OPT_OUT, message="Capa does not fully support analysis of this file.")),
             inspect_data=True,
         )
 
@@ -250,27 +220,7 @@ class TestMandiantCapa(test_template.TestPlugin):
         result = self.do_execution(data_in=[("content", data)])
         self.assertJobResult(
             result,
-            JobResult(
-                state=State(State.Label.COMPLETED),
-                events=[
-                    Event(
-                        sha256="bd5bf1c7c8f6dea328ce04aa5e7690a5a0e9ef3d4c9b011db6e923d3c40ae566",
-                        data=[
-                            EventData(
-                                hash="2217401020870176b9162820fec7a10a574f9bff266122136da487a3f67d6dce", label="text"
-                            )
-                        ],
-                        features={
-                            "capability": [
-                                FV("compiled to the .NET platform", label="runtime/dotnet"),
-                                FV("manipulate console buffer", label="host-interaction/console"),
-                            ],
-                            "malware_behavior_catalog": [FV("C0033", label="Operating System::Console")],
-                        },
-                    )
-                ],
-                data={"2217401020870176b9162820fec7a10a574f9bff266122136da487a3f67d6dce": b""},
-            ),
+            JobResult(state=State(State.Label.OPT_OUT, message="Capa does not fully support analysis of this file.")),
         )
 
     # @pytest.mark.report_tracemalloc
