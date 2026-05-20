@@ -15,4 +15,4 @@ rule:
     - or:
       - api: kernel32.GlobalMemoryStatus
       - api: kernel32.GlobalMemoryStatusEx
-        # FUTURE kernel32.GetSystemInfo with offset
+        # TODO kernel32.GetSystemInfo with offset

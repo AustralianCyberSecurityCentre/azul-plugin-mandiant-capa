@@ -19,7 +19,7 @@ rule:
       - 73CE04892E5F39EC82B00C02FC04C70F:0x4064C6
   features:
     - and:
-      # FUTURE: could add characteristic for nzxor reg size
+      # TODO: maybe add characteristic for nzxor reg size
       - count(characteristic(nzxor)): 1
       - or:
         - match: calculate modulo 256 via x86 assembly

@@ -6,7 +6,7 @@ rule:
       - michael.hunhoff@mandiant.com
     scopes:
       static: function
-      dynamic: thread
+      dynamic: span of calls
     mbc:
       - Defense Evasion::Disable or Evade Security Tools::Bypass Windows File Protection [F0004.007]
     examples:
@@ -16,4 +16,4 @@ rule:
       - string: "sfc_os.dll"
         description: System File Checker
       - number: 0x2 = SfcTerminateWatcherThread
-      - match: linking/runtime-linking
+      - match: link function at runtime on Windows

@@ -6,7 +6,7 @@ rule:
       - joakim@intezer.com
     scopes:
       static: function
-      dynamic: thread
+      dynamic: span of calls
     att&ck:
       - Persistence::Boot or Logon Initialization Scripts::RC Scripts [T1037.004]
     examples:
@@ -17,4 +17,4 @@ rule:
       - match: host-interaction/file-system/write
       - or:
         - substring: "/etc/init.d/"
-        - string: /\/etc\/rc[0-9].d\//
+        - string: /\/etc\/rc[0-9]\.d\//

@@ -46,7 +46,7 @@ class TestMandiantCapa(test_template.TestPlugin):
                         sha256="3e753d9ad6c402a4c1827b1a35b58172f2655b242ee0a3b3d354a7ff6b5dd470",
                         data=[
                             EventData(
-                                hash="fa4702193d2fafe081d4d3aa008693f4fdfa7544d297fe820ccb27af0067386f", label="text"
+                                hash="fdc4022c59b9f4a8576391a6da71541fb2054bc5685cd19fc5cafb3e48644017", label="text"
                             )
                         ],
                         features={
@@ -67,49 +67,7 @@ class TestMandiantCapa(test_template.TestPlugin):
                     )
                 ],
                 data={
-                    "fa4702193d2fafe081d4d3aa008693f4fdfa7544d297fe820ccb27af0067386f": b"""md5                     9fc5fa1cd40915612494aec175b74a45
-sha1                    27abed4b0bf55adef77aee30a6214ecdf100cae3
-sha256                  3e753d9ad6c402a4c1827b1a35b58172f2655b242ee0a3b3d354a7ff6b5dd470
-capa version            9.3.1
-os                      windows
-format                  pe
-arch                    i386
-analysis                static
-extractor               VivisectFeatureExtractor
-base address            0x400000
-function count          14
-library function count  0
-total feature count     6798
-packed with VMProtect
-namespace   anti-analysis/packer/vmprotect
-author      william.ballenthin@mandiant.com
-scope       file
-att&ck      Defense Evasion::Obfuscated Files or Information::Software Packing [T1027.002]
-mbc         Anti-Static Analysis::Software Packing::VMProtect [F0001.010]
-references  https://www.pcworld.com/article/2824572/leaked-programming-manual-may-help-criminals-develop-more-atm-malware.html, https://www.hexacorn.com/blog/2016/12/15/pe-section-names-re-visited/
-or:
-  section: .vmp0 @ 0x41C000
-  section: .vmp1 @ 0x449000
-contain a thread local storage (.tls) section
-namespace  executable/pe/section/tls
-author     michael.hunhoff@mandiant.com
-scope      file
-section: .tls @ 0x41A000
-(internal) packer file limitation
-namespace    internal/limitation/file
-author       william.ballenthin@mandiant.com
-scope        file
-description  This sample appears to be packed.
-             Packed samples have often been obfuscated to hide their logic.
-             capa cannot handle obfuscation well using static analysis. This means the results may be misleading or incomplete.
-             If possible, you should try to unpack this input file before analyzing it with capa.
-             Alternatively, run the sample in a supported sandbox and invoke capa against the report to obtain dynamic analysis results.
-or:
-  match: anti-analysis/packer @ global
-    or:
-      section: .vmp0 @ 0x41C000
-      section: .vmp1 @ 0x449000
-"""
+                    "fdc4022c59b9f4a8576391a6da71541fb2054bc5685cd19fc5cafb3e48644017": b"md5                     9fc5fa1cd40915612494aec175b74a45\nsha1                    27abed4b0bf55adef77aee30a6214ecdf100cae3\nsha256                  3e753d9ad6c402a4c1827b1a35b58172f2655b242ee0a3b3d354a7ff6b5dd470\ncapa version            9.4.0\nos                      windows\nformat                  pe\narch                    i386\nanalysis                static\nextractor               VivisectFeatureExtractor\nbase address            0x400000\nfunction count          14\nlibrary function count  0\ntotal feature count     6798\npacked with VMProtect\nnamespace   anti-analysis/packer/vmprotect\nauthor      william.ballenthin@mandiant.com\nscope       file\natt&ck      Defense Evasion::Obfuscated Files or Information::Software Packing [T1027.002]\nmbc         Anti-Static Analysis::Software Packing::VMProtect [F0001.010]\nreferences  https://www.pcworld.com/article/2824572/leaked-programming-manual-may-help-criminals-develop-more-atm-malware.html, https://www.hexacorn.com/blog/2016/12/15/pe-section-names-re-visited/\nor:\n  section: .vmp0 @ 0x41C000\n  section: .vmp1 @ 0x449000\ncontain a thread local storage (.tls) section\nnamespace  executable/pe/section/tls\nauthor     michael.hunhoff@mandiant.com\nscope      file\nsection: .tls @ 0x41A000\n(internal) packer file limitation\nnamespace    internal/limitation/file\nauthor       william.ballenthin@mandiant.com\nscope        file\ndescription  This sample appears to be packed.\n             Packed samples have often been obfuscated to hide their logic.\n             capa cannot handle obfuscation well using static analysis. This means the results may be misleading or incomplete.\n             If possible, you should try to unpack this input file before analyzing it with capa.\n             Alternatively, run the sample in a supported sandbox and invoke capa against the report to obtain dynamic analysis results.\nor:\n  match: anti-analysis/packer @ global\n    or:\n      section: .vmp0 @ 0x41C000\n      section: .vmp1 @ 0x449000\n"
                 },
             ),
             inspect_data=True,
@@ -138,7 +96,7 @@ or:
                         sha256="3c5e2a4afe58634f45c48f4e800dc56bae3907dde308ff97740e9cd5684d1c53",
                         data=[
                             EventData(
-                                hash="65d7c71024f96912c3eb26e0ae86afde6706c2f8c6fd106e17f4a04681bde9c1", label="text"
+                                hash="da3a4fc29d7c6e1e573936a9c7e59df52e0f3ddf62224b01be2af2312d318429", label="text"
                             )
                         ],
                         features={
@@ -160,8 +118,10 @@ or:
                                 FV("link function at runtime on Windows", label="linking/runtime-linking"),
                                 FV("link many functions at runtime", label="linking/runtime-linking"),
                                 FV("print debug messages", label="host-interaction/log/debug/write-event"),
+                                FV("reference analysis tools strings", label="anti-analysis"),
                             ],
                             "malware_behavior_catalog": [
+                                FV("B0013.001", label="Discovery::Analysis Tool Discovery::Process detection"),
                                 FV(
                                     "B0032.017",
                                     label="Anti-Static Analysis::Executable Code Obfuscation::Stack Strings",
@@ -175,7 +135,7 @@ or:
                         },
                     )
                 ],
-                data={"65d7c71024f96912c3eb26e0ae86afde6706c2f8c6fd106e17f4a04681bde9c1": b""},
+                data={"da3a4fc29d7c6e1e573936a9c7e59df52e0f3ddf62224b01be2af2312d318429": b""},
             ),
         )
 
@@ -201,7 +161,7 @@ or:
                         sha256="006f0a1004e960b6a7e7669bf88c240f203a6e5ebb38d92727167741537cae65",
                         data=[
                             EventData(
-                                hash="a4687b436b532b4d6be11a3a29df32ca00a26720263ffa64083d7ed92110d553", label="text"
+                                hash="b64547340f81edc8b37e143f8e2d10a8d4199a5ba05bc9d3555b99f68cf79da3", label="text"
                             )
                         ],
                         features={
@@ -235,7 +195,7 @@ or:
                         },
                     )
                 ],
-                data={"a4687b436b532b4d6be11a3a29df32ca00a26720263ffa64083d7ed92110d553": b""},
+                data={"b64547340f81edc8b37e143f8e2d10a8d4199a5ba05bc9d3555b99f68cf79da3": b""},
             ),
         )
 
@@ -262,7 +222,7 @@ or:
                         sha256="a1cb4905d8db07e87ff5ab1bccc26b0de422e3a214f498383d9670223c25c9fc",
                         data=[
                             EventData(
-                                hash="a97077e7874708d0cd118b3175eb11e8b3cad9208e970429e9ef598b076391bd", label="text"
+                                hash="99a0d1c91b33575c28f56d5e2cb6b8240032e81e07010e669d579e44c1b40de4", label="text"
                             )
                         ],
                         features={
@@ -271,7 +231,7 @@ or:
                         },
                     )
                 ],
-                data={"a97077e7874708d0cd118b3175eb11e8b3cad9208e970429e9ef598b076391bd": b""},
+                data={"99a0d1c91b33575c28f56d5e2cb6b8240032e81e07010e669d579e44c1b40de4": b""},
             ),
         )
 
@@ -297,7 +257,7 @@ or:
                         sha256="bd5bf1c7c8f6dea328ce04aa5e7690a5a0e9ef3d4c9b011db6e923d3c40ae566",
                         data=[
                             EventData(
-                                hash="f88904f4bf9b43509a4e1e03da9a49276675211da5b5a47a38469ac220b73111", label="text"
+                                hash="2217401020870176b9162820fec7a10a574f9bff266122136da487a3f67d6dce", label="text"
                             )
                         ],
                         features={
@@ -309,7 +269,7 @@ or:
                         },
                     )
                 ],
-                data={"f88904f4bf9b43509a4e1e03da9a49276675211da5b5a47a38469ac220b73111": b""},
+                data={"2217401020870176b9162820fec7a10a574f9bff266122136da487a3f67d6dce": b""},
             ),
         )
 
@@ -336,7 +296,7 @@ or:
                         sha256="294b8db1f2702b60fb2e42fdc50c2cee6a5046112da9a5703a548a4fa50477bc",
                         data=[
                             EventData(
-                                hash="44c61cdf9d5fe4af533b340af498715907ef4f5ce3acff96734cf68f848cb2cc", label="text"
+                                hash="4e42de5aa2bec9bb4fb0d2ba21edee1d523618eab5f6adb22cfb7e59c8947c72", label="text"
                             )
                         ],
                         features={
@@ -352,6 +312,7 @@ or:
                                     "communicate with kernel module via Netlink socket on Linux",
                                     label="host-interaction/kernel",
                                 ),
+                                FV("create TCP socket", label="communication/socket/tcp"),
                                 FV("create UDP socket", label="communication/socket/udp/send"),
                                 FV("create process on Linux", label="host-interaction/process/create"),
                                 FV("create raw socket", label="communication/socket"),
@@ -387,6 +348,7 @@ or:
                                 FV("C0001.006", label="Communication::Socket Communication::Receive Data"),
                                 FV("C0001.007", label="Communication::Socket Communication::Send Data"),
                                 FV("C0001.010", label="Communication::Socket Communication::Create UDP Socket"),
+                                FV("C0001.011", label="Communication::Socket Communication::Create TCP Socket"),
                                 FV("C0011.001", label="Communication::DNS Communication::Resolve"),
                                 FV("C0017", label="Process::Create Process"),
                                 FV("C0021.004", label="Cryptography::Generate Pseudo-random Sequence::RC4 PRGA"),
@@ -405,7 +367,7 @@ or:
                         },
                     )
                 ],
-                data={"44c61cdf9d5fe4af533b340af498715907ef4f5ce3acff96734cf68f848cb2cc": b""},
+                data={"4e42de5aa2bec9bb4fb0d2ba21edee1d523618eab5f6adb22cfb7e59c8947c72": b""},
             ),
         )
 
@@ -425,7 +387,7 @@ or:
                         sha256="bd8b088f2460047d293fcbab99fdbea51cef334c18bdd40e403376f1dd3a5e91",
                         data=[
                             EventData(
-                                hash="327cff7bd6a69b2b4b8f80b231c677c28740ea1a8b88ffa947bce07f7478ef05", label="text"
+                                hash="45e78eb4cee6d76bc7f3e0ed84675a7ba9356a0d0749bdb0478fbd3687c99132", label="text"
                             )
                         ],
                         features={
@@ -454,11 +416,13 @@ or:
                                 FV("read file on Windows", label="host-interaction/file-system/read"),
                                 FV("reference AES constants", label="data-manipulation/encryption/aes"),
                                 FV("reference Base64 string", label="data-manipulation/encoding/base64"),
+                                FV("reference analysis tools strings", label="anti-analysis"),
                                 FV("resolve function by hash", label="linking/runtime-linking"),
                                 FV("resolve function by parsing PE exports", label="load-code/pe"),
                                 FV("write file on Windows", label="host-interaction/file-system/write"),
                             ],
                             "malware_behavior_catalog": [
+                                FV("B0013.001", label="Discovery::Analysis Tool Discovery::Process detection"),
                                 FV(
                                     "B0032.017",
                                     label="Anti-Static Analysis::Executable Code Obfuscation::Stack Strings",
@@ -487,6 +451,6 @@ or:
                         },
                     )
                 ],
-                data={"327cff7bd6a69b2b4b8f80b231c677c28740ea1a8b88ffa947bce07f7478ef05": b""},
+                data={"45e78eb4cee6d76bc7f3e0ed84675a7ba9356a0d0749bdb0478fbd3687c99132": b""},
             ),
         )

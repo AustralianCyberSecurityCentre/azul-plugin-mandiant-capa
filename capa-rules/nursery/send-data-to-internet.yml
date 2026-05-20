@@ -6,7 +6,7 @@ rule:
       - michael.hunhoff@mandiant.com
     scopes:
       static: function
-      dynamic: thread
+      dynamic: span of calls
   features:
     - and:
       - optional:
@@ -24,6 +24,5 @@ rule:
         - api: System.Net.WebClient::UploadString
         - api: System.Net.WebClient::UploadStringAsync
         - api: System.Net.WebClient::UploadStringTaskAsync
-        - api: System.Net.WebClient::UploadValues
         - api: System.Net.WebClient::UploadValuesAsync
         - api: System.Net.WebClient::UploadValuesTaskAsync

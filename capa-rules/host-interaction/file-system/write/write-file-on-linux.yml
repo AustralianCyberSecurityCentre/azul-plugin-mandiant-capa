@@ -6,8 +6,8 @@ rule:
       - joakim@intezer.com
       - mehunhoff@google.com
     scopes:
-      static: function
-      dynamic: thread
+      static: instruction
+      dynamic: call
     mbc:
       - File System::Writes File [C0052]
     examples:
@@ -25,12 +25,9 @@ rule:
         - api: fputwc
         - api: putwc
         - api: fputws
-        - api: write
         - api: fwrite
         - api: putwchar
         - api: dprintf
         - api: vdprintf
         - api: fprintf
         - api: vfprintf
-      - optional:
-        - match: create or open file
