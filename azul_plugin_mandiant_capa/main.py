@@ -69,7 +69,7 @@ class AzulPluginMandiantCapa(BinaryPlugin):
         os.environ.setdefault("FORCE_INTERACTIVE", "False")
         os.environ.setdefault("NO_COLOR", "True")
 
-    def execute(self, job: Job) -> dict:
+    def execute(self, job: Job):
         """Run the plugin."""
         # rules and signatures live here
         # rules will only be used on first run, to generate an optimised version in the cache
@@ -89,10 +89,6 @@ class AzulPluginMandiantCapa(BinaryPlugin):
             file_on_disk.flush()
             file_on_disk.seek(0)
 
-            # In flare-capa 5.0.0 it seems that the typelib sigs weren't being used to ignore capabilities found in
-            # library code.
-            # Use ignore_sigs to force azul-capa to behave in the same manner for comparison testing.
-            # Works correctly in 5.1.0
             try:
                 results = do_capa_processing(
                     pathlib.Path(file_on_disk.name),
@@ -108,7 +104,7 @@ class AzulPluginMandiantCapa(BinaryPlugin):
             except UnicodeDecodeError:
                 return self.is_malformed("Unicode could not be decoded within PE metadata.")
 
-        # no results, CAPA did not like this file for some reason?
+        # no results, CAPA was unable to match any rules or signals on this file.
         if not results:
             return State(State.Label.OPT_OUT, message="Capa does not fully support analysis of this file.")
 
