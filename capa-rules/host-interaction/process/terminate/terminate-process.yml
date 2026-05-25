@@ -4,11 +4,11 @@ rule:
     namespace: host-interaction/process/terminate
     authors:
       - moritz.raabe@mandiant.com
-      - michael.hunhoff@mandiant.com
+      - mehunhoff@google.com
       - anushka.virgaonkar@mandiant.com
     scopes:
       static: function
-      dynamic: thread
+      dynamic: span of calls
     mbc:
       - Process::Terminate Process [C0018]
     examples:
@@ -23,6 +23,10 @@ rule:
       - api: System.Windows.Forms.Application::Exit
       - api: exit
       - api: Exit
+      - api: RstrtMgr.RmShutdown
+      - and:
+        - os: linux
+        - api: exit_group
       - and:
         - optional:
           - match: open process
@@ -30,3 +34,4 @@ rule:
           - api: kernel32.TerminateProcess
           - api: ntdll.NtTerminateProcess
           - api: kernel32.ExitProcess
+          - api: ZwTerminateProcess

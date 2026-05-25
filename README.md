@@ -89,6 +89,8 @@ azul-capa --server http://azul-dispatcher.localnet/
 CAPA uses rules to detect patterns matching known capabilities. A public repository of rules is available from
 https://github.com/mandiant/capa-rules and this plugin requires a copy of those rules, or an equivalent rules repository.
 
+NOTE - this repostitory has been copied into this one and is using an apache v2 license.
+
 CAPA relies on capa-sigs to identify library code, ensuring the capabilities of included library code is ignored. This
 detection uses a database of Hexray's FLIRT signatures and can be obtained from
 https://github.com/mandiant/capa/sigs. This is not included when installing CAPA via pip

@@ -5,9 +5,10 @@ rule:
     namespace: communication/http
     authors:
       - "@mr-tz"
+      - mehunhoff@google.com
     scopes:
       static: function
-      dynamic: thread
+      dynamic: span of calls
     mbc:
       - Communication::HTTP Communication [C0002]
     references:
@@ -21,3 +22,11 @@ rule:
       - substring: "like Gecko"
       - api: urlmon.ObtainUserAgentString
       - property/read: System.Net.HttpWebRequest::UserAgent
+      - basic block:
+        - and:
+          - api: UrlMkGetSessionOption
+          - number: 0x10000001 = URLMON_OPTION_USERAGENT
+      - call:
+        - and:
+          - api: UrlMkGetSessionOption
+          - number: 0x10000001 = URLMON_OPTION_USERAGENT

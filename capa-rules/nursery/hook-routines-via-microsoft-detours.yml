@@ -1,12 +1,12 @@
 rule:
   meta:
     name: hook routines via microsoft detours
-    # namespace: linking/hooking
+    namespace: linking/hooking
     authors:
       - william.ballenthin@mandiant.com
     scopes:
       static: function
-      dynamic: thread
+      dynamic: span of calls
     references:
       - https://www.fireeye.com/content/dam/fireeye-www/global/en/blog/threat-research/Flare-On%202017/Challenge7.pdf
   features:

@@ -4,9 +4,10 @@ rule:
     namespace: persistence/registry/run
     authors:
       - moritz.raabe@mandiant.com
+      - mehunhoff@google.com
     scopes:
       static: function
-      dynamic: thread
+      dynamic: span of calls
     att&ck:
       - Persistence::Boot or Logon Autostart Execution::Registry Run Keys / Startup Folder [T1547.001]
     mbc:
@@ -22,13 +23,10 @@ rule:
         - number: 0x80000001 = HKEY_CURRENT_USER
         - number: 0x80000002 = HKEY_LOCAL_MACHINE
       - or:
-        - and:
-          - string: /Software\\Microsoft\\Windows\\CurrentVersion/i
-          - or:
-            - string: /Run/i
-            - string: /Explorer\\Shell Folders/i
-            - string: /User Shell Folders/i
-            - string: /RunServices/i
-            - string: /Policies\\Explorer\\Run/i
-        - string: /Software\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\load/i
-        - string: /System\\CurrentControlSet\\Control\\Session Manager\\BootExecute/i
+        - string: /Software\\Microsoft\\Windows\\CurrentVersion\\Run/i
+        - string: /Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders/i
+        - string: /Software\\Microsoft\\Windows\\CurrentVersion\\User Shell Folders/i
+        - string: /Software\\Microsoft\\Windows\\CurrentVersion\\RunServices/i
+        - string: /Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer\\Run/i
+        - string: /Software\\Microsoft\\Windows NT\\CurrentVersion\\Windows\\Load/i
+        - string: /System\\(ControlSet\d{3}|CurrentControlSet)\\Control\\Session Manager\\BootExecute/i

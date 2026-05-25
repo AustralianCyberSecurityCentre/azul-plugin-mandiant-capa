@@ -165,18 +165,9 @@ def do_capa_processing(
 
     for file_extractor in file_extractors:
         try:
-            pure_file_capabilities = capa.main.find_file_capabilities(rules, file_extractor, {})
+            capa.main.find_file_capabilities(rules, file_extractor, {})
         except (PEFormatError, ELFError, OverflowError) as e:
             raise CorruptFileError(str(e)) from e
-
-        # check for file limitations
-        if capa.main.has_static_limitation(rules, pure_file_capabilities):
-            # bail if there's a limitation that short-circuits processing,
-            return
-
-        if capa.main.has_dynamic_limitation(rules, pure_file_capabilities):
-            # bail if there's a limitation that short-circuits processing,
-            return
 
     # set sig_paths if we will use them
     # standalone CAPA isn't applying sigs to PEs, or keeps the excluded hits in its results.
