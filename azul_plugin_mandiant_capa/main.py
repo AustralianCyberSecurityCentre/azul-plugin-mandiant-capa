@@ -61,8 +61,8 @@ class AzulPluginMandiantCapa(BinaryPlugin):
         super().__init__(*args, **kwargs)
         # Docs for rich console settings https://rich.readthedocs.io/en/latest/console.html#environment-variables
         # Fixed terminal width and height for consistent output streams.
-        os.environ.setdefault("COLUMNS", str(self.cfg.terminal_width))
-        os.environ.setdefault("LINES", str(self.cfg.terminal_height))
+        os.environ.setdefault("COLUMNS", str(self.cfg.terminal_width))  # ty: ignore[unresolved-attribute] ty doesn't understand add_settings
+        os.environ.setdefault("LINES", str(self.cfg.terminal_height))  # ty: ignore[unresolved-attribute] ty doesn't understand add_settings
         # Override Rich's auto-detection of the console.
         os.environ.setdefault("TTY_COMPATIBLE", "0")
         # Disable animations on console output
@@ -94,9 +94,9 @@ class AzulPluginMandiantCapa(BinaryPlugin):
                     pathlib.Path(file_on_disk.name),
                     [pathlib.Path(capa_rules_path)],
                     pathlib.Path(capa_sigs_path),
-                    (self.cfg.ignore_sigs == "yes"),
+                    (self.cfg.ignore_sigs == "yes"),  # ty: ignore[unresolved-attribute] ty doesn't understand add_settings
                     cache_dir=pathlib.Path(capa_rules_cache_path),
-                    capa_logging=(self.cfg.see_capa_logging == "yes"),
+                    capa_logging=(self.cfg.see_capa_logging == "yes"),  # ty: ignore[unresolved-attribute] ty doesn't understand add_settings
                 )
             except (CorruptFileError, RuleError, SignatureError) as e:
                 self.logger.warning(str(e))
