@@ -207,7 +207,7 @@ def do_capa_processing(
     # put info into metadata section for reports
     meta = capa.loader.collect_metadata([], file_path, file_type, OS_AUTO, rules_path, extractor, capabilities)
 
-    meta.analysis.layout = capa.loader.compute_layout(rules, extractor, capabilities.matches)
+    meta.analysis.layout = capa.loader.compute_layout(rules, extractor, capabilities.matches)  # ty: ignore[invalid-assignment] false positive, ty doesn't understand the unions in capa's result_document.py
 
     # generate a report
     try:
@@ -234,7 +234,7 @@ def do_capa_processing(
     return ret
 
 
-def extract_capabilities(doc: rd) -> list[tuple[str, str]]:
+def extract_capabilities(doc: rd.ResultDocument) -> list[tuple[str, str | None]]:
     """Extract CAPA capabilities from CAPA report document.
 
     :param doc: report document produced by analysis
@@ -248,7 +248,7 @@ def extract_capabilities(doc: rd) -> list[tuple[str, str]]:
     return capabilities
 
 
-def extract_attack(doc: rd) -> list[tuple[str, str]]:
+def extract_attack(doc: rd.ResultDocument) -> list[tuple[str, str]]:
     """Extract mitre attack techniques from CAPA report document.
 
     :param doc: report document produced by analysis
@@ -265,7 +265,7 @@ def extract_attack(doc: rd) -> list[tuple[str, str]]:
     return attacks
 
 
-def extract_behaviours(doc: rd) -> list[tuple[str, str]]:
+def extract_behaviours(doc: rd.ResultDocument) -> list[tuple[str, str]]:
     """Extract mitre malware behaviour from CAPA report document.
 
     :param doc: report document produced by analysis
