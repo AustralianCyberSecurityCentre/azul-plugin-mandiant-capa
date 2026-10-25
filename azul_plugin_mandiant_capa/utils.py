@@ -205,7 +205,7 @@ def do_capa_processing(
     capabilities = capa.main.find_capabilities(rules, extractor, disable_progress=no_prog)
 
     # put info into metadata section for reports
-    meta = capa.loader.collect_metadata([], file_path, file_type, OS_AUTO, rules_path, extractor, capabilities)
+    meta = capa.loader.collect_metadata([], file_path, file_type, rules_path, extractor, capabilities)
 
     meta.analysis.layout = capa.loader.compute_layout(rules, extractor, capabilities.matches)  # ty: ignore[invalid-assignment] false positive, ty doesn't understand the unions in capa's result_document.py
 
