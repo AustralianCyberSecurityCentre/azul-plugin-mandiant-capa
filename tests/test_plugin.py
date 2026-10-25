@@ -27,7 +27,36 @@ class TestMandiantCapa(test_template.TestPlugin):
         # we OPTOUT of packed samples,
         self.assertJobResult(
             result,
-            JobResult(state=State(State.Label.OPT_OUT, message="Capa does not fully support analysis of this file.")),
+            JobResult(
+                state=State(State.Label.COMPLETED),
+                events=[
+                    Event(
+                        sha256="028706fa3cc74c9549f3187b12f6b223cdfc84c6e24e2f6417dbece15ba027f0",
+                        data=[
+                            EventData(
+                                hash="e2b45e3bc24528722fc465ab61d6fb49a53287e4deca908c5a86eb45ff5c1e42", label="text"
+                            )
+                        ],
+                        features={
+                            "attack": [
+                                FV(
+                                    "T1027.002",
+                                    label="Defense Evasion::Obfuscated Files or Information::Software Packing",
+                                )
+                            ],
+                            "capability": [
+                                FV("packed with UPX", label="anti-analysis/packer/upx"),
+                                FV("packed with generic packer", label="anti-analysis/packer/generic"),
+                            ],
+                            "malware_behavior_catalog": [
+                                FV("F0001.002", label="Anti-Static Analysis::Software Packing::Standard Compression"),
+                                FV("F0001.008", label="Anti-Static Analysis::Software Packing::UPX"),
+                            ],
+                        },
+                    )
+                ],
+                data={"e2b45e3bc24528722fc465ab61d6fb49a53287e4deca908c5a86eb45ff5c1e42": b""},
+            ),
         )
 
     def test_packed_sample(self):
@@ -46,7 +75,7 @@ class TestMandiantCapa(test_template.TestPlugin):
                         sha256="3e753d9ad6c402a4c1827b1a35b58172f2655b242ee0a3b3d354a7ff6b5dd470",
                         data=[
                             EventData(
-                                hash="c28165fcc6ce03f2edc69e504a2628e374319ba77c7a348fd191876010bfe4c4", label="text"
+                                hash="165b68959c8ef65af11437346e85bb67d023a5b2069b6de92859c07cc69a4058", label="text"
                             )
                         ],
                         features={
@@ -67,49 +96,7 @@ class TestMandiantCapa(test_template.TestPlugin):
                     )
                 ],
                 data={
-                    "c28165fcc6ce03f2edc69e504a2628e374319ba77c7a348fd191876010bfe4c4": b"""md5                     9fc5fa1cd40915612494aec175b74a45
-sha1                    27abed4b0bf55adef77aee30a6214ecdf100cae3
-sha256                  3e753d9ad6c402a4c1827b1a35b58172f2655b242ee0a3b3d354a7ff6b5dd470
-capa version            9.4.0
-os                      windows
-format                  pe
-arch                    i386
-analysis                static
-extractor               VivisectFeatureExtractor
-base address            0x400000
-function count          14
-library function count  0
-total feature count     6824
-packed with VMProtect
-namespace   anti-analysis/packer/vmprotect
-author      william.ballenthin@mandiant.com
-scope       file
-att&ck      Defense Evasion::Obfuscated Files or Information::Software Packing [T1027.002]
-mbc         Anti-Static Analysis::Software Packing::VMProtect [F0001.010]
-references  https://www.pcworld.com/article/2824572/leaked-programming-manual-may-help-criminals-develop-more-atm-malware.html, https://www.hexacorn.com/blog/2016/12/15/pe-section-names-re-visited/
-or:
-  section: .vmp0 @ 0x41C000
-  section: .vmp1 @ 0x449000
-contain a thread local storage (.tls) section
-namespace  executable/pe/section/tls
-author     michael.hunhoff@mandiant.com
-scope      file
-section: .tls @ 0x41A000
-(internal) packer file limitation
-namespace    internal/limitation/static
-author       william.ballenthin@mandiant.com
-scope        file
-description  This sample appears to be packed.
-             Packed samples have often been obfuscated to hide their logic.
-             capa cannot handle obfuscation well using static analysis. This means the results may be misleading or incomplete.
-             If possible, you should try to unpack this input file before analyzing it with capa.
-             Alternatively, run the sample in a supported sandbox and invoke capa against the report to obtain dynamic analysis results.
-or:
-  match: anti-analysis/packer @ global
-    or:
-      section: .vmp0 @ 0x41C000
-      section: .vmp1 @ 0x449000
-"""
+                    "165b68959c8ef65af11437346e85bb67d023a5b2069b6de92859c07cc69a4058": b"md5                     9fc5fa1cd40915612494aec175b74a45\nsha1                    27abed4b0bf55adef77aee30a6214ecdf100cae3\nsha256                  3e753d9ad6c402a4c1827b1a35b58172f2655b242ee0a3b3d354a7ff6b5dd470\ncapa version            10.0.0\nos                      windows\nformat                  pe\narch                    i386\nanalysis                static\nextractor               VivisectFeatureExtractor\nbase address            0x400000\nfunction count          14\nlibrary function count  0\ntotal feature count     6824\npacked with VMProtect\nnamespace   anti-analysis/packer/vmprotect\nauthor      william.ballenthin@mandiant.com\nscope       file\natt&ck      Defense Evasion::Obfuscated Files or Information::Software Packing [T1027.002]\nmbc         Anti-Static Analysis::Software Packing::VMProtect [F0001.010]\nreferences  https://www.pcworld.com/article/2824572/leaked-programming-manual-may-help-criminals-develop-more-atm-malware.html, https://www.hexacorn.com/blog/2016/12/15/pe-section-names-re-visited/\nor:\n  section: .vmp0 @ 0x41C000\n  section: .vmp1 @ 0x449000\ncontain a thread local storage (.tls) section\nnamespace  executable/pe/section/tls\nauthor     michael.hunhoff@mandiant.com\nscope      file\nsection: .tls @ 0x41A000\n(internal) packer file limitation\nnamespace    internal/limitation/static\nauthor       william.ballenthin@mandiant.com\nscope        file\ndescription  This sample appears to be packed.\n             Packed samples have often been obfuscated to hide their logic.\n             capa cannot handle obfuscation well using static analysis. This means the results may be misleading or incomplete.\n             If possible, you should try to unpack this input file before analyzing it with capa.\n             Alternatively, run the sample in a supported sandbox and invoke capa against the report to obtain dynamic analysis results.\nor:\n  match: anti-analysis/packer @ global\n    or:\n      section: .vmp0 @ 0x41C000\n      section: .vmp1 @ 0x449000\n"
                 },
             ),
             inspect_data=True,
@@ -138,7 +125,7 @@ or:
                         sha256="3c5e2a4afe58634f45c48f4e800dc56bae3907dde308ff97740e9cd5684d1c53",
                         data=[
                             EventData(
-                                hash="da3a4fc29d7c6e1e573936a9c7e59df52e0f3ddf62224b01be2af2312d318429", label="text"
+                                hash="5175b75caf730a7ba5719910cdc4913cd99c049f72a88775e498f9e3a6d63b7c", label="text"
                             )
                         ],
                         features={
@@ -177,7 +164,7 @@ or:
                         },
                     )
                 ],
-                data={"da3a4fc29d7c6e1e573936a9c7e59df52e0f3ddf62224b01be2af2312d318429": b""},
+                data={"5175b75caf730a7ba5719910cdc4913cd99c049f72a88775e498f9e3a6d63b7c": b""},
             ),
         )
 
@@ -203,7 +190,7 @@ or:
                         sha256="006f0a1004e960b6a7e7669bf88c240f203a6e5ebb38d92727167741537cae65",
                         data=[
                             EventData(
-                                hash="b64547340f81edc8b37e143f8e2d10a8d4199a5ba05bc9d3555b99f68cf79da3", label="text"
+                                hash="3394432a35bf6ff68db65d9ed43ce40d3b6394d579b9728776b80ae929563fa1", label="text"
                             )
                         ],
                         features={
@@ -237,7 +224,7 @@ or:
                         },
                     )
                 ],
-                data={"b64547340f81edc8b37e143f8e2d10a8d4199a5ba05bc9d3555b99f68cf79da3": b""},
+                data={"3394432a35bf6ff68db65d9ed43ce40d3b6394d579b9728776b80ae929563fa1": b""},
             ),
         )
 
@@ -264,7 +251,7 @@ or:
                         sha256="a1cb4905d8db07e87ff5ab1bccc26b0de422e3a214f498383d9670223c25c9fc",
                         data=[
                             EventData(
-                                hash="99a0d1c91b33575c28f56d5e2cb6b8240032e81e07010e669d579e44c1b40de4", label="text"
+                                hash="6e813a0fca3aa075f1d5dfbc51b030e187d80659ee9dba95120016d70c660821", label="text"
                             )
                         ],
                         features={
@@ -273,7 +260,7 @@ or:
                         },
                     )
                 ],
-                data={"99a0d1c91b33575c28f56d5e2cb6b8240032e81e07010e669d579e44c1b40de4": b""},
+                data={"6e813a0fca3aa075f1d5dfbc51b030e187d80659ee9dba95120016d70c660821": b""},
             ),
         )
 
@@ -299,7 +286,7 @@ or:
                         sha256="bd5bf1c7c8f6dea328ce04aa5e7690a5a0e9ef3d4c9b011db6e923d3c40ae566",
                         data=[
                             EventData(
-                                hash="d0187cd19abec43b5e41c2419c0362ba1dfb22a0daaa69a7f5dd723a0cd309ba", label="text"
+                                hash="b52862e0e92e9a120525cadc3490e59e2a5c83a77d9b1e14658e6f7168b4dd2d", label="text"
                             )
                         ],
                         features={
@@ -311,7 +298,7 @@ or:
                         },
                     )
                 ],
-                data={"d0187cd19abec43b5e41c2419c0362ba1dfb22a0daaa69a7f5dd723a0cd309ba": b""},
+                data={"b52862e0e92e9a120525cadc3490e59e2a5c83a77d9b1e14658e6f7168b4dd2d": b""},
             ),
         )
 
@@ -338,7 +325,7 @@ or:
                         sha256="294b8db1f2702b60fb2e42fdc50c2cee6a5046112da9a5703a548a4fa50477bc",
                         data=[
                             EventData(
-                                hash="4e42de5aa2bec9bb4fb0d2ba21edee1d523618eab5f6adb22cfb7e59c8947c72", label="text"
+                                hash="644179bd535270a239fe8c6b9d8fcccb900daffe29889e2dd94493bf9039fa5c", label="text"
                             )
                         ],
                         features={
@@ -409,7 +396,7 @@ or:
                         },
                     )
                 ],
-                data={"4e42de5aa2bec9bb4fb0d2ba21edee1d523618eab5f6adb22cfb7e59c8947c72": b""},
+                data={"644179bd535270a239fe8c6b9d8fcccb900daffe29889e2dd94493bf9039fa5c": b""},
             ),
         )
 
@@ -429,7 +416,7 @@ or:
                         sha256="bd8b088f2460047d293fcbab99fdbea51cef334c18bdd40e403376f1dd3a5e91",
                         data=[
                             EventData(
-                                hash="45e78eb4cee6d76bc7f3e0ed84675a7ba9356a0d0749bdb0478fbd3687c99132", label="text"
+                                hash="e54532ac2de313cdec06d4f4e365b4de6a9ac9b71cbd8363d24c55f423043ead", label="text"
                             )
                         ],
                         features={
@@ -493,6 +480,6 @@ or:
                         },
                     )
                 ],
-                data={"45e78eb4cee6d76bc7f3e0ed84675a7ba9356a0d0749bdb0478fbd3687c99132": b""},
+                data={"e54532ac2de313cdec06d4f4e365b4de6a9ac9b71cbd8363d24c55f423043ead": b""},
             ),
         )
